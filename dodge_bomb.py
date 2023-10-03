@@ -31,8 +31,11 @@ def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
+    
     """こうかとん"""
     kk_img = pg.image.load("ex02/fig/3.png")
+    kk_img = pg.image.load("ex02/fig/4.png")
+    kk_img = pg.image.load("ex02/fig/5.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()
     kk_rct.center = (900, 400)  # 練習３：こうかとんの初期座標を設定する
