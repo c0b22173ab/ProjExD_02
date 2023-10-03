@@ -11,6 +11,8 @@ delta = {  # 練習３：移動量辞書
     pg.K_RIGHT: (+5, 0),
 }
 
+
+
 def check_bound(obj_rct: pg.Rect):
     """
     引数 こうかとんRectかばくだんRect
@@ -34,8 +36,9 @@ def main():
     
     """こうかとん"""
     kk_img = pg.image.load("ex02/fig/3.png")
-    kk_img = pg.image.load("ex02/fig/4.png")
-    kk_img = pg.image.load("ex02/fig/5.png")
+    kc_img = pg.image.load("ex02/fig/4.png")
+    kc_img = pg.image.load("ex02/fig/5.png")
+    
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()
     kk_rct.center = (900, 400)  # 練習３：こうかとんの初期座標を設定する
@@ -54,18 +57,31 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
-        
+            
+        screen.blit(bg_img, [0, 0])
         
         if kk_rct.colliderect(bd_rct):
+           
+           kk_img = kc_img#切り替える
+           screen.blit(kk_img, kk_rct)
+           pg.display.update()
+           pg.time.wait(1000)#止める時間
+           
+           
+           #画像を切り替える
            print("ゲームオーバー")
+           
+           
+        
            return
 
+    
 
 
 
 
 
-        screen.blit(bg_img, [0, 0])
+        
         
         
         """こうかとん"""
@@ -79,8 +95,12 @@ def main():
         kk_rct.move_ip(sum_mv[0], sum_mv[1])  # 練習３：移動させる
         if check_bound(kk_rct) != (True, True):
              kk_rct.move_ip(-sum[0], -sum_mv[1])
+        #追加課題１飛ぶ方向に向かってこうかとんの画像を切り替える
+             
         screen.blit(kk_img, kk_rct)  # 練習３：移動後の座標に表示させる
         
+
+
         """"ばくだん"""
         bd_rct.move_ip(vx, vy)  # 練習２：爆弾を移動させる
         yoko, tate = check_bound(bd_rct)
